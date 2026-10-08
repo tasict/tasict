@@ -416,12 +416,6 @@ h1 {
   stroke-linejoin: round;
 }
 
-.status {
-  margin: 6px 0 0;
-  color: var(--muted);
-  font-size: 0.9375rem;
-}
-
 /* Facts that decide whether a project fits: what it works with, how it connects, its license */
 .facts {
   display: flex;
