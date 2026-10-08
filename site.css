@@ -1,0 +1,483 @@
+/* ctsite.cc home page
+   Idea: the floor plan of a Taiwanese apartment. Each product is a device in the home; the room of the product being read lights up in that product's brand color.
+   The site has no accent color of its own; color comes only from the products. Type is Archivo (width axis: condensed for plan labels, wide for names). */
+
+@font-face {
+  font-family: "Archivo";
+  src: url("fonts/archivo-latin.woff2") format("woff2");
+  font-weight: 100 900;
+  font-stretch: 62% 125%;
+  font-display: swap;
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+:root {
+  color-scheme: light dark;
+  --paper: #edf0ec;
+  --floor: #f8f9f6;
+  --ink: #1a201e;
+  --muted: #56615c;
+  --rule: #d3dad5;
+  --line: #b4beb8;
+  --wall: #29302d;
+
+  --daikin: #0097e0;
+  --hitachi: #d9002b;
+  --panasonic: #0b62c4;
+  --roborock: #e5413a;
+  --mqtt: #660066;
+  --dc: #5a3fd4;
+  --pigeon: #d2382c;
+
+  --font: "Archivo", -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --paper: #0f1312;
+    --floor: #171c1a;
+    --ink: #e2e8e4;
+    --muted: #97a39d;
+    --rule: #28312d;
+    --line: #3d4944;
+    --wall: #c3cdc8;
+
+    --daikin: #36b4f0;
+    --hitachi: #ff4d63;
+    --panasonic: #5aa7ff;
+    --roborock: #ff6a5f;
+    --mqtt: #d98ad9;
+    --dc: #b2a0ff;
+    --pigeon: #ff7a6e;
+  }
+}
+
+.c-daikin { --c: var(--daikin); }
+.c-hitachi { --c: var(--hitachi); }
+.c-panasonic { --c: var(--panasonic); }
+.c-roborock { --c: var(--roborock); }
+.c-mqtt { --c: var(--mqtt); }
+.c-dc { --c: var(--dc); }
+.c-pigeon { --c: var(--pigeon); }
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+
+@media (prefers-reduced-motion: no-preference) {
+  html { scroll-behavior: smooth; }
+}
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font);
+  font-size: 1.0625rem;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+a { color: inherit; }
+
+a:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 3px;
+  border-radius: 3px;
+}
+
+[hidden] { display: none !important; }
+
+.page {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 0 clamp(16px, 4vw, 48px);
+}
+
+/* Header */
+
+.top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 22px 0;
+}
+
+.mark {
+  font-size: 1.25rem;
+  font-weight: 800;
+  font-stretch: 125%;
+  letter-spacing: -0.01em;
+  line-height: 1;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  gap: clamp(14px, 2.5vw, 26px);
+  font-size: 0.9375rem;
+  line-height: 1;
+}
+
+.nav a {
+  text-decoration: none;
+  padding: 8px 0;
+}
+
+.nav a:hover { text-decoration: underline; text-underline-offset: 5px; text-decoration-thickness: 1.5px; }
+
+/* Layout: one column on phones (intro, plan, list); on wide screens the plan stays put on the right */
+
+.layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-areas: "intro" "plan" "list";
+  gap: 36px;
+  padding-bottom: 72px;
+}
+
+.intro { grid-area: intro; padding-top: clamp(16px, 5vh, 64px); }
+.plan-wrap { grid-area: plan; }
+.list { grid-area: list; }
+
+@media (min-width: 1000px) {
+  .layout {
+    grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr);
+    grid-template-areas: "intro plan" "list plan";
+    column-gap: clamp(48px, 6vw, 96px);
+    row-gap: 64px;
+  }
+  .plan-wrap { align-self: stretch; }
+  .plan-fig {
+    position: sticky;
+    top: 24px;
+    padding-top: clamp(16px, 5vh, 64px);
+  }
+}
+
+/* Intro */
+
+h1 {
+  margin: 0 0 20px;
+  font-size: clamp(2rem, 1.25rem + 2.5vw, 3rem);
+  font-weight: 800;
+  font-stretch: 106%;
+  line-height: 1.08;
+  letter-spacing: -0.025em;
+  text-wrap: balance;
+}
+
+.lede {
+  margin: 0;
+  max-width: 36em;
+  color: var(--muted);
+  text-wrap: pretty;
+}
+
+.lede + .lede { margin-top: 12px; }
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin: 28px 0 0;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  min-height: 46px;
+  padding: 0 18px;
+  border: 1.5px solid var(--ink);
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.2;
+  text-decoration: none;
+}
+
+.btn:hover { background: color-mix(in srgb, var(--ink) 7%, transparent); }
+
+.btn-solid { background: var(--ink); color: var(--paper); }
+.btn-solid:hover { background: color-mix(in srgb, var(--ink) 86%, var(--paper)); }
+
+/* Floor plan */
+
+.plan-fig { margin: 0; }
+
+.plan {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: calc(100vh - 150px);
+  overflow: visible;
+}
+
+.plan .floor { fill: var(--floor); transition: fill 0.35s ease; }
+.plan .floor.is-lit { fill: color-mix(in srgb, var(--c) 14%, var(--floor)); }
+
+.plan .furn * { fill: none; stroke: var(--line); stroke-width: 1.2; }
+
+.plan .walls path { fill: none; stroke: var(--wall); stroke-linecap: square; }
+.plan .walls .ext { stroke-width: 10; }
+.plan .walls .int { stroke-width: 6; }
+.plan .walls .rail { stroke-width: 3; }
+.plan .walls .win { fill: var(--floor); stroke: var(--wall); stroke-width: 1.5; }
+.plan .walls .glass { stroke-width: 1; stroke-linecap: butt; }
+
+.plan .doors path { fill: none; }
+.plan .doors .swing { stroke: var(--line); stroke-width: 1.2; }
+.plan .doors .leaf { stroke: var(--wall); stroke-width: 2; }
+
+.plan .room-label {
+  fill: var(--muted);
+  font-size: 15px;
+  font-stretch: 75%;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+
+.plan .dev { cursor: pointer; outline: none; }
+.plan .dev .hit { fill: transparent; stroke: none; }
+
+.plan .dev .shape {
+  fill: var(--floor);
+  fill: color-mix(in srgb, var(--c) 16%, var(--floor));
+  stroke: var(--c);
+  stroke-width: 1.8;
+  transition: fill 0.3s ease;
+}
+
+.plan .dev .detail {
+  fill: none;
+  stroke: var(--c);
+  stroke-width: 1.4;
+  stroke-linecap: round;
+  transition: stroke 0.3s ease;
+}
+
+.plan .dev .fx {
+  opacity: 0;
+  fill: none;
+  stroke: var(--c);
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  transition: opacity 0.35s ease;
+}
+
+.plan .dev .fx .trail { stroke-width: 1.6; stroke-dasharray: 3 6; }
+.plan .dev .fx .glow { fill: var(--c); fill-opacity: 0.16; stroke: none; }
+
+.plan .dev.is-lit .shape { fill: var(--c); }
+.plan .dev.is-lit .detail { stroke: var(--floor); }
+.plan .dev.is-lit .fx { opacity: 1; }
+
+.plan .dev:focus-visible .shape { stroke: var(--ink); stroke-width: 3; }
+
+@media (prefers-color-scheme: dark) {
+  .plan .dev.is-lit { filter: drop-shadow(0 0 7px color-mix(in srgb, var(--c) 65%, transparent)); }
+}
+
+/* On load, the devices power on one after another */
+@media (prefers-reduced-motion: no-preference) {
+  .plan .devices > .dev { animation: power-on 0.9s ease-out backwards; }
+  .plan .devices > .dev:nth-child(1) { animation-delay: 0.25s; }
+  .plan .devices > .dev:nth-child(2) { animation-delay: 0.37s; }
+  .plan .devices > .dev:nth-child(3) { animation-delay: 0.49s; }
+  .plan .devices > .dev:nth-child(4) { animation-delay: 0.61s; }
+  .plan .devices > .dev:nth-child(5) { animation-delay: 0.73s; }
+  .plan .devices > .dev:nth-child(6) { animation-delay: 0.85s; }
+  .plan .devices > .dev:nth-child(7) { animation-delay: 0.97s; }
+  .plan .devices > .dev .shape { animation: power-on-fill 0.9s ease-out backwards; animation-delay: inherit; }
+}
+
+@keyframes power-on {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes power-on-fill {
+  0%, 30% { fill: var(--c); }
+  100% { fill: color-mix(in srgb, var(--c) 16%, var(--floor)); }
+}
+
+.plan-caption {
+  margin: 14px 0 0;
+  min-height: 3.6em;
+  color: var(--muted);
+  font-size: 0.9375rem;
+  line-height: 1.6;
+}
+
+.plan-caption strong {
+  display: block;
+  color: var(--ink);
+  font-weight: 700;
+  font-stretch: 112%;
+}
+
+/* Project list */
+
+.group + .group { margin-top: 52px; }
+
+.group h2 {
+  margin: 0;
+  font-size: 1.375rem;
+  font-weight: 800;
+  line-height: 1.35;
+}
+
+.group-note {
+  margin: 6px 0 0;
+  max-width: 34em;
+  color: var(--muted);
+  font-size: 0.9375rem;
+}
+
+.projects {
+  list-style: none;
+  margin: 16px 0 0;
+  padding: 0;
+  border-top: 1px solid var(--rule);
+}
+
+.project {
+  position: relative;
+  display: grid;
+  grid-template-columns: 56px minmax(0, 1fr);
+  gap: 18px;
+  padding: 22px 0 24px 18px;
+  border-bottom: 1px solid var(--rule);
+  scroll-margin-top: 28vh;
+}
+
+/* Bar on the left: this project is lit on the plan */
+.project::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 24px;
+  bottom: 26px;
+  width: 3px;
+  border-radius: 2px;
+  background: var(--c);
+  opacity: 0;
+  transform: scaleY(0.4);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.project.is-lit::before { opacity: 1; transform: none; }
+
+.project img { display: block; width: 56px; height: 56px; }
+
+.project h3 {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 700;
+  font-stretch: 112%;
+  letter-spacing: -0.01em;
+  line-height: 1.3;
+}
+
+.desc {
+  margin: 6px 0 0;
+  max-width: 36em;
+  text-wrap: pretty;
+}
+
+.project-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 2px 12px;
+}
+
+/* Inline text, not flex, so the label shares the name's baseline */
+.verified {
+  color: var(--c);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  line-height: 1.3;
+  white-space: nowrap;
+}
+
+.verified svg {
+  width: 14px;
+  height: 14px;
+  margin-right: 4px;
+  vertical-align: -2px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.status {
+  margin: 6px 0 0;
+  color: var(--muted);
+  font-size: 0.9375rem;
+}
+
+/* Facts that decide whether a project fits: what it works with, how it connects, its license */
+.facts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 28px;
+  margin: 12px 0 0;
+  font-size: 0.875rem;
+  line-height: 1.4;
+}
+
+.facts dt { color: var(--muted); }
+.facts dd { margin: 1px 0 0; font-weight: 600; }
+
+.links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 22px;
+  margin: 10px 0 0;
+  font-size: 0.9375rem;
+}
+
+.links a {
+  font-weight: 600;
+  text-decoration-thickness: 1.5px;
+  text-underline-offset: 5px;
+}
+
+.links a.quiet { color: var(--muted); font-weight: 500; }
+.links a:hover { color: var(--ink); text-decoration-thickness: 2.5px; }
+
+/* Footer */
+
+.foot {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 8px 24px;
+  padding: 28px 0 40px;
+  border-top: 1px solid var(--rule);
+  color: var(--muted);
+  font-size: 0.9375rem;
+}
+
+.foot p { margin: 0; }
+.foot-links { display: flex; flex-wrap: wrap; gap: 4px 22px; }
+.foot-links a { text-underline-offset: 4px; }
+.foot-links a:hover { color: var(--ink); }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { transition-duration: 0.01ms !important; animation: none !important; }
+}
+
+@media (max-width: 520px) {
+  body { font-size: 1rem; }
+  .nav { gap: 14px; }
+  .project { grid-template-columns: 44px minmax(0, 1fr); gap: 14px; padding-left: 14px; }
+  .project img { width: 44px; height: 44px; }
+  .plan .room-label { font-size: 19px; }
+}
