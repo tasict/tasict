@@ -124,7 +124,7 @@
              aria-label="Daikin Local Platform: Daikin air conditioner in the living room"
              data-where="Daikin air conditioner in the living room">
             <rect class="hit" x="46" y="212" width="82" height="62"/>
-            <g class="fx"><path d="M66 242Q87 250 108 242M72 254Q87 260 102 254M78 266Q87 270 96 266"/></g>
+            <g class="fx air air-down"><path d="M66 242Q87 250 108 242"/><path d="M72 254Q87 260 102 254"/><path d="M78 266Q87 270 96 266"/></g>
             <rect class="shape" x="56" y="216" width="62" height="14" rx="4"/>
             <path class="detail" d="M63 224H111"/>
           </a>
@@ -132,7 +132,7 @@
              aria-label="Jci Hitachi Platform: Hitachi air conditioner in the bedroom"
              data-where="Hitachi air conditioner in the bedroom">
             <rect class="hit" x="190" y="50" width="58" height="78"/>
-            <g class="fx"><path d="M220 68Q212 89 220 110M208 74Q202 89 208 104M196 80Q192 89 196 98"/></g>
+            <g class="fx air air-left"><path d="M220 68Q212 89 220 110"/><path d="M208 74Q202 89 208 104"/><path d="M196 80Q192 89 196 98"/></g>
             <rect class="shape" x="230" y="58" width="14" height="62" rx="4"/>
             <path class="detail" d="M237 65V113"/>
           </a>
@@ -142,6 +142,7 @@
             <rect class="hit" x="512" y="26" width="104" height="56"/>
             <rect class="shape" x="564" y="30" width="46" height="46" rx="5"/>
             <circle class="detail" cx="587" cy="53" r="14"/>
+            <g class="fx"><path class="drum" d="M579 53A8 8 0 0 1 587 45M595 53A8 8 0 0 1 587 61"/></g>
             <rect class="shape" x="520" y="36" width="28" height="34" rx="6"/>
             <path class="detail" d="M527 46H541M527 53H541M527 60H541"/>
           </a>
@@ -168,6 +169,7 @@
             <rect class="hit" x="366" y="26" width="46" height="40"/>
             <rect class="shape" x="372" y="30" width="34" height="30" rx="3"/>
             <path class="detail" d="M381 37V53M389 37V53M397 37V53"/>
+            <g class="fx"><circle class="led" cx="381" cy="56.5" r="1.6"/><circle class="led" cx="389" cy="56.5" r="1.6"/><circle class="led" cx="397" cy="56.5" r="1.6"/></g>
           </a>
           <a class="dev c-pigeon" href="#pigeon-post" data-project="pigeon-post" data-room="study"
              aria-label="Pigeon Post for Gmail: Chrome on the laptop in the study"
@@ -175,6 +177,7 @@
             <rect class="hit" x="282" y="26" width="60" height="40"/>
             <rect class="shape" x="290" y="36" width="44" height="24" rx="2"/>
             <path class="detail" d="M288 32H336M297 42H327V54H297Z"/>
+            <g class="fx"><circle class="ring" cx="336" cy="31" r="5"/><circle class="badge" cx="336" cy="31" r="5"/></g>
           </a>
         </g>
       </svg>
@@ -187,11 +190,25 @@
 
   <div class="list" id="products">
 
+    <div class="filters" role="group" aria-label="Filter products by feature" hidden>
+      <button type="button" class="chip" data-filter="all" aria-pressed="true"
+              data-note="Every product, grouped by where it runs. Pick a feature to see which ones have it.">All <span class="chip-n"></span></button>
+      <button type="button" class="chip" data-filter="matter" aria-pressed="false"
+              data-note="Exposes its devices over Matter as well as HomeKit.">Matter <span class="chip-n"></span></button>
+      <button type="button" class="chip" data-filter="local" aria-pressed="false"
+              data-note="Talks to the device on your home network, so everyday control does not depend on the maker’s cloud.">Local control <span class="chip-n"></span></button>
+      <button type="button" class="chip" data-filter="verified" aria-pressed="false"
+              data-note="Reviewed by the Homebridge team and listed as a verified plugin.">Verified <span class="chip-n"></span></button>
+      <button type="button" class="chip" data-filter="taiwan" aria-pressed="false"
+              data-note="For appliances sold in Taiwan, controlled through the maker’s Taiwanese app.">Taiwan models <span class="chip-n"></span></button>
+    </div>
+    <p class="filter-note" aria-live="polite" hidden></p>
+
     <section class="group" aria-labelledby="g-home">
       <h2 id="g-home">Homebridge plugins</h2>
       <p class="group-note">Each plugin runs on Homebridge, which you can host on a Raspberry Pi, a NAS or any always-on computer at home.</p>
       <ul class="projects">
-        <li class="project c-roborock" id="roborock">
+        <li class="project c-roborock" id="roborock" data-tags="matter local">
           <img src="icons/roborock.svg" width="56" height="56" alt="">
           <div>
             <h3>Roborock Vacuum</h3>
@@ -207,7 +224,7 @@
             </p>
           </div>
         </li>
-        <li class="project c-daikin" id="daikin">
+        <li class="project c-daikin" id="daikin" data-tags="matter local">
           <img src="icons/daikin.svg" width="56" height="56" alt="">
           <div>
             <h3>Daikin Local Platform</h3>
@@ -223,7 +240,7 @@
             </p>
           </div>
         </li>
-        <li class="project c-hitachi" id="hitachi">
+        <li class="project c-hitachi" id="hitachi" data-tags="verified taiwan">
           <img src="icons/hitachi.svg" width="56" height="56" alt="">
           <div>
             <div class="project-head">
@@ -242,7 +259,7 @@
             </p>
           </div>
         </li>
-        <li class="project c-panasonic" id="panasonic">
+        <li class="project c-panasonic" id="panasonic" data-tags="local verified taiwan">
           <img src="icons/panasonic.svg" width="56" height="56" alt="">
           <div>
             <div class="project-head">
@@ -261,7 +278,7 @@
             </p>
           </div>
         </li>
-        <li class="project c-mqtt" id="mqtt">
+        <li class="project c-mqtt" id="mqtt" data-tags="local">
           <img src="icons/mqtt.svg" width="56" height="56" alt="">
           <div>
             <h3>MQTT Thing EX</h3>
@@ -282,6 +299,7 @@
 
     <section class="group" aria-labelledby="g-nas">
       <h2 id="g-nas">QNAP NAS app</h2>
+      <p class="group-note">Runs on the NAS itself, so downloads carry on with your computer switched off.</p>
       <ul class="projects">
         <li class="project c-dc" id="download-center">
           <img src="icons/download-center.png" width="56" height="56" alt="">
@@ -304,6 +322,7 @@
 
     <section class="group" aria-labelledby="g-browser">
       <h2 id="g-browser">Chrome extension</h2>
+      <p class="group-note">Installs from the Chrome Web Store and works with the Gmail accounts already signed in to Chrome.</p>
       <ul class="projects">
         <li class="project c-pigeon" id="pigeon-post">
           <img src="icons/pigeon-post.png" width="56" height="56" alt="">

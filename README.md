@@ -20,7 +20,7 @@ This repository is also the source of [www.ctsite.cc](https://www.ctsite.cc/), s
 | --- | --- |
 | `index.html` | The page |
 | `site.css` | Styles; color tokens in `:root`, dark mode under `prefers-color-scheme: dark` |
-| `site.js` | The floor plan: pointing at or scrolling to a product lights its room |
+| `site.js` | The floor plan: pointing at or scrolling to a product lights its room. The filters: picking a feature narrows the list and highlights those devices on the plan |
 | `404.html` | Page for unknown addresses |
 | `icons/` | Product icons, copied from each product's site |
 | `fonts/archivo-latin.woff2` | Archivo variable font (Latin), self-hosted |
@@ -31,4 +31,5 @@ This repository is also the source of [www.ctsite.cc](https://www.ctsite.cc/), s
 1. Put the product icon in `icons/` as `.svg` or `.png`, named in lowercase letters, digits and `-`.
 2. In `site.css`, add the brand color to the product colors (one for light, one for dark) and a line `.c-<name> { --c: var(--<name>); }`.
 3. In `index.html`, copy a `<li class="project">` into the matching group and change the `id`, the `c-` class, the icon, name, description, facts and links.
-4. To show it on the floor plan, add an `<a class="dev">` to `<g class="devices">`: `href` points to the `id` from step 3, `data-project` is the same `id`, `data-room` is the room (bedroom, study, balcony, kitchen, living, dining, entry) and `data-where` describes the device. Draw it with `class="shape"` outlines and `class="detail"` lines.
+4. Set `data-tags` on that `<li>` to the features it has, separated by spaces: `matter` (works with Matter), `local` (controls the device over the home network), `verified` (Verified by Homebridge), `taiwan` (for appliances sold in Taiwan). Leave it out if none apply. A new feature needs its own `<button class="chip">` in `.filters`; the counts on the chips are filled in by `site.js`.
+5. To show it on the floor plan, add an `<a class="dev">` to `<g class="devices">`: `href` points to the `id` from step 3, `data-project` is the same `id`, `data-room` is the room (bedroom, study, balcony, kitchen, living, dining, entry) and `data-where` describes the device. Draw it with `class="shape"` outlines and `class="detail"` lines, and optionally a `<g class="fx">` that appears while the device is lit; its animation goes in `site.css`.
