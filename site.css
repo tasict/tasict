@@ -635,6 +635,26 @@ h1 {
 .links a.quiet { color: var(--muted); font-weight: 500; }
 .links a:hover { color: var(--ink); text-decoration-thickness: 2.5px; }
 
+/* Text pages (privacy) */
+
+.doc {
+  max-width: 42em;
+  padding: clamp(16px, 5vh, 64px) 0 72px;
+}
+
+.doc h2 {
+  margin: 40px 0 10px;
+  font-size: 1.375rem;
+  font-weight: 800;
+  line-height: 1.35;
+}
+
+.doc p, .doc ul { margin: 0 0 14px; }
+.doc ul { padding-left: 1.25em; }
+.doc li { margin: 4px 0; }
+.doc a { text-underline-offset: 3px; text-decoration-color: var(--line); text-decoration-thickness: 1.5px; }
+.doc a:hover { text-decoration-color: var(--ink); }
+
 /* Footer */
 
 .foot {
