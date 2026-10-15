@@ -27,6 +27,8 @@ This repository is also the source of [www.ctsite.cc](https://www.ctsite.cc/), s
 | `fonts/archivo-latin.woff2` | Archivo variable font (Latin), self-hosted |
 | `CNAME` | Custom domain for GitHub Pages |
 | `ads.txt` | Authorizes the site's AdSense account to sell ads on ctsite.cc |
+| `robots.txt` | Allows crawling and names the sitemap |
+| `sitemap.xml` | The pages for search engines, with the date each last changed |
 
 ### Adding a product
 
