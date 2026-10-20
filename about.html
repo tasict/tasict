@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>ctsite.cc: about</title>
+<meta name="description" content="Who makes the ctsite.cc products, what they have in common, where the articles about each one are, and how to get help or get in touch.">
+<link rel="canonical" href="https://www.ctsite.cc/about.html">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#EDF0EC" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0F1312" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preload" href="fonts/archivo-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="site.css">
+</head>
+<body>
+<div class="page">
+
+<header class="top">
+  <a class="mark" href="/">ctsite.cc</a>
+  <nav class="nav" aria-label="Site">
+    <a href="/#products">Products</a>
+    <a href="https://blog.ctsite.cc/">Blog</a>
+    <a href="about.html" aria-current="page">About</a>
+  </nav>
+</header>
+
+<main class="doc">
+  <h1>About ctsite.cc</h1>
+  <p class="lede">ctsite.cc is the home of the free, open-source software written and maintained by CT Tsai (<a href="https://github.com/tasict">tasict</a> on GitHub): Homebridge plugins that bring appliances into Apple Home, a download manager for QNAP NAS, and a Gmail notifier for Chrome.</p>
+
+  <h2>What the products are for</h2>
+  <p>Most of the products solve the same problem: a device you already own works with its maker’s app but not with Apple Home. The plugins run on <a href="https://homebridge.io/">Homebridge</a>, an open-source server you host on a Raspberry Pi, a NAS or any always-on computer at home. Homebridge presents each device to the Home app, so it can be controlled from the Home app and with Siri, and take part in scenes and automations alongside your other accessories.</p>
+  <p>The two tools outside Apple Home follow the same idea of working with what is already there. Download Center runs on the QNAP NAS itself, so downloads carry on with your computer switched off. Pigeon Post for Gmail uses the Gmail accounts already signed in to Chrome, with no extra sign-in, no OAuth and no server.</p>
+
+  <h2>How the plugins are built</h2>
+  <ul>
+    <li><strong>Local control where the device allows it.</strong> Daikin Local Platform talks to each air conditioner directly on your network, with no cloud in between. Roborock Vacuum keeps local control when the Roborock cloud is down, and Panasonic Smart App uses the local network with the cloud as a fallback. MQTT Thing EX talks only to your own MQTT broker.</li>
+    <li><strong>HomeKit and Matter.</strong> Roborock Vacuum and Daikin Local Platform can expose their devices over Matter as well as HomeKit.</li>
+    <li><strong>Appliances sold in Taiwan.</strong> Jci Hitachi Platform works with Hitachi air conditioners from the AirCloud Home app (Hitachi Taiwan), and Panasonic Smart App with appliances from Panasonic Smart App (Taiwan). Both are reviewed by the Homebridge team and listed as verified plugins.</li>
+    <li><strong>Existing setups keep working.</strong> MQTT Thing EX is a maintained TypeScript successor to homebridge-mqttthing and reads an existing configuration unchanged.</li>
+  </ul>
+  <p>Every product is released under an open-source license (MIT, Apache-2.0 or GPL-3.0, listed with each product on the <a href="/#products">home page</a>), and its full source code is on GitHub.</p>
+
+  <h2>Articles about each product</h2>
+  <p>The <a href="https://blog.ctsite.cc/">ctsite.cc blog</a> has a longer article for each product, written in Traditional Chinese: the problem it solves, how it connects to the device, what it can do in the Home app, how to set it up and what to know before you start. The blog also carries development notes on work in progress.</p>
+  <ul>
+    <li><a href="https://blog.ctsite.cc/2026/10/roborock-vacuum.html">Roborock Vacuum</a>: local control when the cloud is down, and choosing HomeKit or Matter for each vacuum.</li>
+    <li><a href="https://blog.ctsite.cc/2026/10/daikin-local-platform.html">Daikin Local Platform</a>: controlling Daikin air conditioners entirely on the home network, the supported Wi-Fi adapters, and the Matter mode.</li>
+    <li><a href="https://blog.ctsite.cc/2026/10/hitachi-aircloud.html">Jci Hitachi Platform</a>: how the plugin reaches the air conditioner through AirCloud Home, frost wash, and using a main or shared account.</li>
+    <li><a href="https://blog.ctsite.cc/2026/10/panasonic-smart-app.html">Panasonic Smart App</a>: how the plugin finds your appliances, and local control with the cloud as a fallback.</li>
+    <li><a href="https://blog.ctsite.cc/2026/10/mqttthing-ex.html">MQTT Thing EX</a>: configuring a light, the device types it covers, and moving over from homebridge-mqttthing.</li>
+    <li><a href="https://blog.ctsite.cc/2026/10/download-center.html">Download Center</a>: links, torrents and magnet links in one queue on the NAS, and notifications you can reply to.</li>
+    <li><a href="https://blog.ctsite.cc/2026/10/pigeon-post-gmail.html">Pigeon Post for Gmail</a>: unread counts for every signed-in account, choosing which mail matters, and where the data goes.</li>
+    <li><a href="https://blog.ctsite.cc/2026/10/turnout.html">Turnout</a>: development notes on a macOS VPN client for WireGuard servers that lets you choose which network interface the traffic uses.</li>
+  </ul>
+
+  <h2>Getting help</h2>
+  <p>Each product has its own issue tracker on GitHub, linked from its product page. That is the place for bug reports, questions and feature requests, so the answer is there for the next person with the same question. A report is easiest to act on when it says which version you run and includes the relevant part of the log.</p>
+  <p>For anything about this website itself, open an issue on the <a href="https://github.com/tasict/tasict/issues">site’s issue tracker</a>.</p>
+
+  <h2>Supporting the work</h2>
+  <p>The products are free. The home page of this site and the blog show Google AdSense ads, which the <a href="privacy.html">privacy policy</a> describes. If a product is useful to you, you can also support its development <a href="https://tasict.bobaboba.me">with a bubble tea</a> (paid by card, no PayPal account needed) or through <a href="https://paypal.me/tasict">PayPal</a>.</p>
+
+  <h2>Trademarks</h2>
+  <p>Apple Home and HomeKit are trademarks of Apple Inc. Daikin, Hitachi, Panasonic, Roborock, QNAP and Gmail are trademarks of their respective owners, and Matter is a trademark of the Connectivity Standards Alliance. The products on this site are independent projects, not affiliated with or endorsed by any of these companies.</p>
+</main>
+
+<footer class="foot">
+  <p>© 2026 ctsite.cc. Each product is released under its own open-source license.</p>
+  <p class="foot-links">
+    <a href="https://blog.ctsite.cc/">Blog</a>
+    <a href="https://github.com/tasict">GitHub</a>
+    <a href="https://tasict.bobaboba.me">Support development</a>
+    <a href="privacy.html">Privacy</a>
+  </p>
+</footer>
+
+</div>
+</body>
+</html>

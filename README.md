@@ -22,6 +22,7 @@ This repository is also the source of [www.ctsite.cc](https://www.ctsite.cc/), s
 | `site.css` | Styles; color tokens in `:root`, dark mode under `prefers-color-scheme: dark` |
 | `site.js` | The floor plan: pointing at or scrolling to a product lights its room. The filters: picking a feature narrows the list and highlights those devices on the plan |
 | `404.html` | Page for unknown addresses |
+| `about.html` | Who makes the products, what they have in common, the blog article for each, and how to get help |
 | `privacy.html` | Privacy policy, with the disclosures AdSense requires |
 | `icons/` | Product icons, copied from each product's site |
 | `fonts/archivo-latin.woff2` | Archivo variable font (Latin), self-hosted |
