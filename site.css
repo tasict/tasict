@@ -1,5 +1,5 @@
 /* ctsite.cc home page
-   Idea: a directory of the products, sorted by where they run (Mac, iPhone and Apple Watch, smart home, NAS and Chrome).
+   Idea: a directory of the products, sorted by where they run (Mac, Windows and Linux; iPhone and Apple Watch; smart home; NAS and Chrome).
    The smart-home and tools products sit beside the floor plan of a Taiwanese apartment: each is a device in the home, and the room of the product being read lights up in that product's brand color.
    The site has no accent color of its own; color comes only from the products. Type is Archivo (width axis: condensed for plan labels, wide for names). */
 
@@ -32,6 +32,7 @@
   --turnout: #1f5fbf;
   --peaberry: #9a5800;
   --wata: #1a6fd6;
+  --inputweave: #8e3fd8;
 
   --font: "Archivo", -apple-system, BlinkMacSystemFont, sans-serif;
 }
@@ -56,6 +57,7 @@
     --turnout: #6fa3f2;
     --peaberry: #ffb224;
     --wata: #6cc4ff;
+    --inputweave: #bf8cff;
   }
 }
 
@@ -69,6 +71,7 @@
 .c-turnout { --c: var(--turnout); }
 .c-peaberry { --c: var(--peaberry); }
 .c-wata { --c: var(--wata); }
+.c-inputweave { --c: var(--inputweave); }
 
 *, *::before, *::after { box-sizing: border-box; }
 

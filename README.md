@@ -1,10 +1,11 @@
 # ctsite.cc
 
-Apps for Mac, iPhone and Apple Watch, and free, open-source Homebridge plugins that bring the devices you already own into Apple Home, plus tools for QNAP NAS and Gmail. All products: **[www.ctsite.cc](https://www.ctsite.cc/)**
+Apps for Mac, Windows, Linux, iPhone and Apple Watch, and free, open-source Homebridge plugins that bring the devices you already own into Apple Home, plus tools for QNAP NAS and Gmail. All products: **[www.ctsite.cc](https://www.ctsite.cc/)**
 
 | Product | What it does |
 | --- | --- |
 | [Turnout](https://turnout.ctsite.cc/) | A VPN client for macOS that connects to WireGuard servers the way wg-quick does |
+| [InputWeave](https://inputweave.ctsite.cc/) | One keyboard and mouse, clipboard and file drops shared between Mac, Windows and Linux computers on your local network; free and open source |
 | [Peaberry](https://peaberry.ctsite.cc/) | A macOS menu bar app that lets AI agents keep the Mac awake while they work |
 | [Wata](https://wata.ctsite.cc/) | Water reminders for iPhone and Apple Watch that log a glass when you hold your iPhone to your bottle |
 | [homebridge-roborock-vacuum](https://github.com/tasict/homebridge-roborock-vacuum) | Roborock robot vacuums in Apple Home over HomeKit or Matter, with local control |
@@ -36,7 +37,7 @@ This repository is also the source of [www.ctsite.cc](https://www.ctsite.cc/), s
 
 ### How the home page is organized
 
-The page opens with a directory of four categories, each a tile linking to its section: Mac (`#desktop`), iPhone & Apple Watch (`#iphone`), Smart home (`#smart-home`) and NAS & Chrome (`#tools`). The Homebridge plugins and the tools sit beside the floor plan, where each is a device in the home; the feature filters apply to the plugins only.
+The page opens with a directory of four categories, each a tile linking to its section: Mac, Windows & Linux (`#desktop`), iPhone & Apple Watch (`#iphone`), Smart home (`#smart-home`) and NAS & Chrome (`#tools`). The Homebridge plugins and the tools sit beside the floor plan, where each is a device in the home; the feature filters apply to the plugins only.
 
 The app cards carry their state as data, so a launch or a price change needs no edit:
 
