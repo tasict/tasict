@@ -6,24 +6,55 @@
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://pagead2.googlesyndication.com https://*.googlesyndication.com https://*.adtrafficquality.google https://www.googletagservices.com https://fundingchoicesmessages.google.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self'; connect-src 'self' https://itunes.apple.com https://turnout.ctsite.cc https://*.googlesyndication.com https://*.doubleclick.net https://*.google.com https://*.adtrafficquality.google; frame-src https://*.googlesyndication.com https://*.doubleclick.net https://*.google.com https://*.adtrafficquality.google; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <title>ctsite.cc: Mac, PC and iPhone apps, Homebridge plugins for Apple Home</title>
-<meta name="description" content="Turnout and Peaberry for Mac, InputWeave for Mac, Windows and Linux, Wata for iPhone and Apple Watch, and free, open-source Homebridge plugins for Apple Home, plus tools for QNAP NAS and Chrome.">
+<meta name="description" content="Turnout for Mac and Windows, InputWeave for Mac, Windows and Linux, Peaberry for Mac, Wata for iPhone and Apple Watch, and free, open-source Homebridge plugins for Apple Home, plus tools for QNAP NAS and Chrome.">
 <link rel="canonical" href="https://www.ctsite.cc/">
 <meta property="og:type" content="website">
+<meta property="og:site_name" content="ctsite.cc">
 <meta property="og:url" content="https://www.ctsite.cc/">
 <meta property="og:title" content="ctsite.cc: Mac, PC and iPhone apps, Homebridge plugins for Apple Home">
 <meta property="og:description" content="Apps for Mac, Windows, Linux and iPhone, and free, open-source Homebridge plugins that bring Daikin, Hitachi, Panasonic, Roborock and MQTT devices into Apple Home.">
+<meta property="og:image" content="https://www.ctsite.cc/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="The ctsite.cc home page: apps for Mac, Windows, Linux, iPhone and Apple Watch, Homebridge plugins, and tools for QNAP NAS and Chrome">
 <meta property="og:locale" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
 <meta name="color-scheme" content="light dark">
 <meta name="theme-color" content="#EDF0EC" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#0F1312" media="(prefers-color-scheme: dark)">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="preload" href="fonts/archivo-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="site.css">
 <script src="site.js" defer></script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://www.ctsite.cc/#org",
+      "name": "ctsite.cc",
+      "url": "https://www.ctsite.cc/",
+      "founder": {"@type": "Person", "name": "CT Tsai", "url": "https://github.com/tasict"},
+      "sameAs": ["https://github.com/tasict", "https://blog.ctsite.cc/"]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://www.ctsite.cc/#site",
+      "name": "ctsite.cc",
+      "url": "https://www.ctsite.cc/",
+      "inLanguage": "en",
+      "publisher": {"@id": "https://www.ctsite.cc/#org"}
+    }
+  ]
+}
+</script>
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5869768897978172"
      crossorigin="anonymous"></script>
 </head>
 <body>
+<a class="skip" href="#main">Skip to content</a>
 <div class="page">
 
 <header class="top">
@@ -35,7 +66,7 @@
   </nav>
 </header>
 
-<main class="home" data-new-days="60">
+<main class="home" id="main" data-new-days="60">
 
   <section class="intro hero" aria-labelledby="hello">
     <div class="new-slot"><p class="new" hidden><span class="new-tag">New</span> <a href=""></a></p></div>
@@ -84,10 +115,10 @@
 
     <section class="group" id="desktop" aria-labelledby="desktop-title">
       <h2 id="desktop-title">Apps for Mac, Windows and Linux</h2>
-      <p class="group-note">Native apps for macOS 15 or later, on Apple silicon and Intel. InputWeave runs on Windows and Linux as well.</p>
+      <p class="group-note">Native apps for macOS 15 or later, on Apple silicon and Intel. Turnout and InputWeave run on Windows as well, and InputWeave on Linux.</p>
       <ul class="projects">
         <li class="project c-turnout" id="turnout" data-status="live" data-released="2026-10-26"
-            data-site="https://turnout.ctsite.cc/" data-new-line="Turnout, a WireGuard VPN client for Mac"
+            data-site="https://turnout.ctsite.cc/" data-new-line="Turnout, a WireGuard VPN client for Mac and Windows"
             data-pricing="https://turnout.ctsite.cc/assets/pricing.json">
           <img src="icons/turnout.png" width="56" height="56" alt="">
           <div>
@@ -95,15 +126,15 @@
               <h3>Turnout</h3>
               <span class="status" hidden></span>
             </div>
-            <p class="desc">wg-quick for your Mac, in a native app. Turnout connects to WireGuard servers with your hooks and routes intact, and lets you choose which network interface the tunnel leaves through.</p>
+            <p class="desc">wg-quick for your Mac and PC, in a native app. Turnout connects to WireGuard servers with your hooks and routes intact, and lets you choose which network interface the tunnel leaves through.</p>
             <dl class="facts">
-              <div><dt>Runs on</dt><dd>macOS 15 or later</dd></div>
+              <div><dt>Runs on</dt><dd>macOS 15 or later, Windows 11 (x64)</dd></div>
               <div><dt>Works with</dt><dd>WireGuard servers, wg-quick configs</dd></div>
-              <div data-fact="price"><dt>Price</dt><dd><span data-price>US$19</span> once, three Macs · 7-day trial</dd></div>
+              <div data-fact="price"><dt>Price</dt><dd><span data-price>US$19</span> once, three computers, Mac or Windows · 7-day trial</dd></div>
             </dl>
             <p class="sale" hidden></p>
             <p class="links">
-              <a href="https://github.com/tasict/Turnout/releases/latest">Download Turnout</a>
+              <a href="https://turnout.ctsite.cc/#install">Download Turnout</a>
               <a class="quiet" href="https://turnout.ctsite.cc/">Product page</a>
               <a class="quiet" href="https://turnout.ctsite.cc/#pricing">Buy a license</a>
               <a class="quiet" href="https://blog.ctsite.cc/2026/10/turnout.html" hreflang="zh-Hant">Article (Chinese)</a>
@@ -125,7 +156,7 @@
               <div data-fact="price"><dt>Price</dt><dd>Free, open source (GPL-3.0) · optional US$10 license</dd></div>
             </dl>
             <p class="links">
-              <a href="https://github.com/tasict/InputWeave/releases/latest">Download InputWeave</a>
+              <a href="https://inputweave.ctsite.cc/#download">Download InputWeave</a>
               <a class="quiet" href="https://inputweave.ctsite.cc/">Product page</a>
               <a class="quiet" href="https://github.com/tasict/InputWeave">Source code</a>
               <a class="quiet" href="https://inputweave.ctsite.cc/#price">Buy a license</a>
@@ -496,7 +527,7 @@
 </main>
 
 <footer class="foot">
-  <p>© 2026 ctsite.cc. Each product’s license or terms are on its own page.</p>
+  <p>© 2026 tasict. Each product’s license or terms are on its own page.</p>
   <p class="foot-links">
     <a href="https://blog.ctsite.cc/">Blog</a>
     <a href="https://github.com/tasict">GitHub</a>

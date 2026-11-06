@@ -94,12 +94,28 @@ body {
 a { color: inherit; }
 
 a:focus-visible {
-  outline: 2px solid var(--ink);
+  outline: 3px solid var(--ink);
   outline-offset: 3px;
   border-radius: 3px;
 }
 
 [hidden] { display: none !important; }
+
+/* The first thing a keyboard reaches on every page of every ctsite.cc site */
+.skip {
+  position: absolute;
+  left: 16px;
+  top: -100px;
+  z-index: 10;
+  padding: 10px 16px;
+  border-radius: 6px;
+  background: var(--ink);
+  color: var(--paper);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.skip:focus { top: 12px; }
 
 .page {
   --gutter: clamp(16px, 4vw, 48px);
@@ -223,7 +239,7 @@ h1 {
   min-height: 46px;
   padding: 0 18px;
   border: 1.5px solid var(--ink);
-  border-radius: 6px;
+  border-radius: 10px;
   font-size: 1rem;
   font-weight: 600;
   line-height: 1.2;
@@ -564,7 +580,7 @@ h1 {
 
 .chip:hover { border-color: var(--ink); }
 .chip:active { transform: scale(0.95); }
-.chip:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
+.chip:focus-visible { outline: 3px solid var(--ink); outline-offset: 3px; }
 .chip[aria-pressed="true"] { background: var(--ink); border-color: var(--ink); color: var(--paper); }
 
 .chip-n {

@@ -4,7 +4,7 @@ Apps for Mac, Windows, Linux, iPhone and Apple Watch, and free, open-source Home
 
 | Product | What it does |
 | --- | --- |
-| [Turnout](https://turnout.ctsite.cc/) | A VPN client for macOS that connects to WireGuard servers the way wg-quick does |
+| [Turnout](https://turnout.ctsite.cc/) | A VPN client for macOS and Windows that connects to WireGuard servers the way wg-quick does |
 | [InputWeave](https://inputweave.ctsite.cc/) | One keyboard and mouse, clipboard and file drops shared between Mac, Windows and Linux computers on your local network; free and open source |
 | [Peaberry](https://peaberry.ctsite.cc/) | A macOS menu bar app that lets AI agents keep the Mac awake while they work |
 | [Wata](https://wata.ctsite.cc/) | Water reminders for iPhone and Apple Watch that log a glass when you hold your iPhone to your bottle |
@@ -28,6 +28,8 @@ This repository is also the source of [www.ctsite.cc](https://www.ctsite.cc/), s
 | `404.html` | Page for unknown addresses |
 | `about.html` | Who makes the products, what they are for, the blog article for each, and how to get help |
 | `privacy.html` | Privacy policy, with the disclosures AdSense requires |
+| `apple-touch-icon.png` | The 180 px icon iOS uses for a bookmark on the Home Screen, drawn from `favicon.svg` without its rounded corners |
+| `og.png` | The picture link previews show for the home page (1200×630) |
 | `icons/` | Product icons, copied from each product's site |
 | `fonts/archivo-latin.woff2` | Archivo variable font (Latin), self-hosted |
 | `CNAME` | Custom domain for GitHub Pages |
@@ -56,3 +58,4 @@ Any new origin that `site.js` reads from must be added to `connect-src` in the C
 4. For a Homebridge plugin, set `data-tags` on that `<li>` to the features it has, separated by spaces: `matter` (works with Matter), `local` (controls the device over the home network), `verified` (Verified by Homebridge), `taiwan` (for appliances sold in Taiwan). Leave it out if none apply. A new feature needs its own `<button class="chip">` in `.filters`; the counts on the chips are filled in by `site.js`.
 5. To show a plugin or tool on the floor plan, add an `<a class="dev">` to `<g class="devices">`: `href` points to the `id` from step 3, `data-project` is the same `id`, `data-room` is the room (bedroom, study, balcony, kitchen, living, dining, entry) and `data-where` describes the device. Draw it with `class="shape"` outlines and `class="detail"` lines, and optionally a `<g class="fx">` that appears while the device is lit; its animation goes in `site.css`, and its power-on delay in the `nth-child` list there.
 6. Add a line for it to `about.html`, and update the `lastmod` dates in `sitemap.xml`.
+7. If it has a site of its own, add it to the “More from ctsite.cc” block at the foot of every other product site, and give that site the same block.
